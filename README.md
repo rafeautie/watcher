@@ -1,13 +1,13 @@
 # Watcher
 Deliverables Tracker Automation
 
-![Example of menu created by script.](https://github.com/rafeautie/watcher/blob/master/WatcherMenuExample.png)
+![Example of correctly installed script.](https://github.com/rafeautie/watcher/blob/master/CorrectInstallationExample.png)
 
 ## Usage
 
 - **Time-based trigger:** If enabled, the script will run daily, sometime between **12am** and **1am.**
 
-- **Manual trigger:**
+- **Manual trigger:** 2 options
     - **Mark all late deliverables:** will audit the entire spreadsheet. 
     - **Mark late deliverables on this sheet:** will audit the sheet that you are currently viewing.
     
@@ -18,7 +18,7 @@ Deliverables Tracker Automation
 1. Open the spreadsheet you would like to install this script on.
 1. Click **Tools** in the menu.
 1. Click **Script editor** in the dropdown menu.
-    > You should be brought to a new page with an empty Google script that looks like the example below ![Example of new Google scripts project.](https://github.com/rafeautie/watcher/blob/master/GoogleScriptsNewProjectExample.png)
+    > You should be brought to a new page with an empty Google script that looks like the image below. ![Example of new Google scripts project.](https://github.com/rafeautie/watcher/blob/master/GoogleScriptsNewProjectExample.png)
 
 1. Copy the contents of [`watcher.gs`](https://github.com/rafeautie/watcher/blob/master/watcher.gs) (from this repo) into the newly created Google script.
 1. **Save the file.** (CMD + S)
