@@ -14,6 +14,7 @@ function onOpen(e) {
       .addToUi();
 }
 
+
 /**
  * Runs when the add-on is installed; calls onOpen() to ensure menu creation and
  * any other initializion work is done immediately.
@@ -30,9 +31,9 @@ function onInstall(e) {
 function createTimeDrivenTriggers() {
   ScriptApp.newTrigger('auditAllSheets')
       .timeBased()
-      .everyDays(1)
       .atHour(0)
       .nearMinute(15)
+      .everyDays(1)
       .create();
 }
 
@@ -151,7 +152,7 @@ function sendEmail(currentStudentData) {
       '\nCan you please update the tracker with this information (or an ETA of when it will be completed) and reply all to this email so that we know it’s ready to review?\n\nMany thanks!';
   
     MailApp.sendEmail({
-      to: currentStudentData.email,
+      to: 'rafe.autie@galvanize.com',
       //replyTo: REPLY_TO_EMAIL,
       //cc: CC_EMAIL,
       subject: "[RESPONSE REQUIRED TEST] Missing Deliverables",
