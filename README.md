@@ -13,6 +13,8 @@ Deliverables Tracker Automation
     
 > The script will skip the **Deadlines**, **Student+Apps**, and **Names + Emails** sheets.
 
+**NOTE:** If a permissions prompt appears, please **allow** all the permissions it is asking for.
+
 ## Installation
 
 1. Open the spreadsheet you would like to install this script on.
@@ -33,5 +35,5 @@ Deliverables Tracker Automation
 1. Hover over **Time Trigger Settings** to reveal a dropdown menu.
 1. Click **Enable time trigger**.
 
-The script will audit the spread sheet daily sometime between **12am** and **1am.**\
-*Google does not allow finer control of time triggers.*
+>The script will audit the spread sheet daily sometime between **12am** and **1am.**\
+*NOTE: Google does not allow finer control of time triggers.*
