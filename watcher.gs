@@ -1,3 +1,4 @@
+//START
 /**
  * Adds a custom menu with items to show the sidebar and dialog.
  *
@@ -152,10 +153,10 @@ function sendEmail(currentStudentData) {
       '\nCan you please update the tracker with this information (or an ETA of when it will be completed) and reply all to this email so that we know it’s ready to review?\n\nMany thanks!';
   
     MailApp.sendEmail({
-      to: 'rafe.autie@galvanize.com',
-      //replyTo: REPLY_TO_EMAIL,
-      //cc: CC_EMAIL,
-      subject: "[RESPONSE REQUIRED TEST] Missing Deliverables",
+      to: currentStudentData.email,
+      replyTo: REPLY_TO_EMAIL,
+      cc: CC_EMAIL,
+      subject: "[RESPONSE REQUIRED] Missing Deliverables",
       body: BODY_MESSAGE,
     });
 }
@@ -172,3 +173,4 @@ function getStudentEmails() {
   
   return emails;
 }
+//END
