@@ -150,15 +150,14 @@ function getAllDeadlineDates() {
 // EMAIL
 function sendEmail(currentStudentData) {
     var fromList = GmailApp.getAliases();
-    var CC_EMAIL = 'hrsf.communication@galvanize.com';
-    var REPLY_TO_EMAIL = 'hrsf.communication@galvanize.com';
+    var BCC_EMAIL = 'hrsf.communication@galvanize.com';
     var idxOfComm = fromList.indexOf('hrsf.communication@galvanize.com');
   
     var BODY_MESSAGE = 'Hi ' + currentStudentData.name + ', \n\n' +
       'It looks like we’re missing the following deliverable(s):\n\n' + currentStudentData.missingDeliverables.reduce(function(memo, deliverable) { return memo + '• ' + deliverable + '\n'}, '') + 
       '\nCan you please update the tracker with this information (or an ETA of when it will be completed) and reply all to this email so that we know it’s ready to review? Many thanks!';
     
-    GmailApp.sendEmail(currentStudentData.email, "[RESPONSE REQUIRED] Missing Deliverables", BODY_MESSAGE, {from: fromList[idxOfComm]});
+    GmailApp.sendEmail(currentStudentData.email, "[RESPONSE REQUIRED] Missing Deliverables", BODY_MESSAGE, {from: fromList[idxOfComm], bcc: BCC_EMAIL});
 }
 
 // Get all student emails.
