@@ -15,7 +15,6 @@ function onOpen(e) {
       .addToUi();
 }
 
-
 /**
  * Runs when the add-on is installed; calls onOpen() to ensure menu creation and
  * any other initializion work is done immediately.
@@ -69,6 +68,12 @@ function auditSheet(sheet) {
   var deadlines = getDeliverableDeadlines(sheetDeliverables);
   var todaysDate = new Date();
   var emails = getStudentEmails();
+  var idxOfComm = GmailApp.getAliases().indexOf('hrsf.communication@galvanize.com');
+  
+  if (idxOfComm === -1) {
+    SpreadsheetApp.getUi().alert('Your account must have the alias "hrsf.communication@galvanize.com". \n Watcher will not running unless this account has the alias "hrsf.communication@galvanize.com".');
+    return;
+  }
   
   for(var i = 3; i < values.length; i += 1) {
     auditStudent(values[i], sheetDeliverables, deadlines, todaysDate, i + 1, sheet, emails[values[i][0]])
@@ -108,7 +113,6 @@ function auditStudent(student, deliverableNames, deadlines, today, row, sheet, s
   Logger.log(currentStudentData);
   if (currentStudentData.missingDeliverables.length > 0) {
     //Send email to student.
-    Logger.log('Email sent to ' + currentStudentData.name);
     sendEmail(currentStudentData);   
   }
 }
@@ -145,20 +149,16 @@ function getAllDeadlineDates() {
 
 // EMAIL
 function sendEmail(currentStudentData) {
+    var fromList = GmailApp.getAliases();
     var CC_EMAIL = 'hrsf.communication@galvanize.com';
     var REPLY_TO_EMAIL = 'hrsf.communication@galvanize.com';
+    var idxOfComm = fromList.indexOf('hrsf.communication@galvanize.com');
   
     var BODY_MESSAGE = 'Hi ' + currentStudentData.name + ', \n\n' +
       'It looks like we’re missing the following deliverable(s):\n\n' + currentStudentData.missingDeliverables.reduce(function(memo, deliverable) { return memo + '• ' + deliverable + '\n'}, '') + 
-      '\nCan you please update the tracker with this information (or an ETA of when it will be completed) and reply all to this email so that we know it’s ready to review?\n\nMany thanks!';
-  
-    MailApp.sendEmail({
-      to: currentStudentData.email,
-      replyTo: REPLY_TO_EMAIL,
-      cc: CC_EMAIL,
-      subject: "[RESPONSE REQUIRED] Missing Deliverables",
-      body: BODY_MESSAGE,
-    });
+      '\nCan you please update the tracker with this information (or an ETA of when it will be completed) and reply all to this email so that we know it’s ready to review? Many thanks!';
+    
+    GmailApp.sendEmail(currentStudentData.email, "[RESPONSE REQUIRED] Missing Deliverables", BODY_MESSAGE, {from: fromList[idxOfComm]});
 }
 
 // Get all student emails.
